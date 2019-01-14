@@ -51,13 +51,13 @@ export const copyLink = el => {
 }
 
 //判断时间是否超时
-const isOverdue = (time, maxTime = 2) => {
+export const isOverdue = (time, maxTime = 2) => {
   const currentTime = new Date().getTime()
   return (currentTime - time)/1000/60/60 < maxTime
 }
 
 // 获取两个数之间的随机数
-const getRandomInt = (min, max) => {
+export const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
@@ -67,12 +67,12 @@ const getRandomInt = (min, max) => {
 export const clone = obj => JSON.parse(JSON.stringify(obj));
 
 // 延迟
-const sleep = t => new Promise(resolve => {
+export const sleep = t => new Promise(resolve => {
   setTimeout(resolve, t);
 })
 
 // 计算剩余时间 return 01:24:05
-const formatTime = t => {
+export const formatTime = t => {
   const h = parseInt(Math.floor((t / 1000 / 60 / 60) % 60))
   const m = parseInt(Math.floor((t / 1000 / 60) % 60))
   const s = parseInt(Math.floor((t / 1000) % 60))
