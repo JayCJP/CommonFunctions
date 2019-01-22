@@ -78,3 +78,18 @@ export const formatTime = t => {
   const s = parseInt(Math.floor((t / 1000) % 60))
   return `${h}:${m}:${s}`
 }
+
+/**
+ * 
+ * @param {Number} progress 
+ * @description 单行 输出 下载进度▶▶▷▷▷▷ 1~100
+ */
+function printProgress(progress) {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  // 美化进度
+  const processStr = new Array(50).fill('▷');
+  const str = processStr.map((el, i) => i < (progress / 2) ? '▶' : el).join('')
+
+  process.stdout.write(`${str}   ${progress}%`);
+}
