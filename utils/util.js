@@ -93,3 +93,30 @@ function printProgress(progress) {
 
   process.stdout.write(`${str}   ${progress}%`);
 }
+
+// 秒转为播放时间 value number
+export const formatPlayTime = (value) => {
+
+  let second = parseInt(value); // 秒
+  let minute = 0; // 分
+  let hour = 0; // 小时
+
+  if (second > 60) {
+    minute = parseInt(second / 60);
+    second = parseInt(second % 60);
+    if (minute > 60) {
+      hour = parseInt(minute / 60);
+      minute = parseInt(minute % 60);
+    }
+  }
+
+  const secondStr = second >= 10 ? second : `0${second}`;
+  const miunteStr = minute >= 10 ? minute : `0${minute}`
+  let result = `${miunteStr}:${secondStr}`
+
+  if (hour > 0) {
+    let h = hour >= 10 ? hour : `0${hour}`
+    result = `${h}:${result}`;
+  }
+  return result;
+}
