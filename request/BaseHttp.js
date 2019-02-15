@@ -3,7 +3,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const baseInfo = {
-  baseUrl: 'your api'
+  baseUrl: 'your api',
   tk: '', // token缓存的key
   tkt: '' // token过期时间缓存的key
 };
@@ -18,7 +18,7 @@ class BaseHttp {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-	// 取消请求
+	  // 取消请求
     this.cancel = ''
   }
 
