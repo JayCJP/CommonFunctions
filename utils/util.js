@@ -16,19 +16,21 @@ export const formatTime = time => {
   return `${[year, month, day].map(formatNumber).join('-')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
 
-// 格式化数数量 K,W
-function numCount (v, n) {
-  return `${(Number(v) / n).toFixed(2)}K`
-}
 // 格式化数量
+function numCount(v, n, f) {
+  return `${(Number(v) / n).toFixed(2)}${f}`
+}
 export const formatCount = n => {
   let v = (n).toString()
+  if (v.includes('.')) {
+    return v
+  }
   switch (v.length) {
     case 4:
-      v = numCount(v, 1000)
+      v = numCount(v, 1000, '千')
       break
-    case 5: case 6:
-      v = numCount(v, 10000)
+    case 5: case 6: case 7:
+      v = numCount(v, 10000, '万')
       break
   }
   return v
