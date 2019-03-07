@@ -122,3 +122,14 @@ export const formatPlayTime = (value) => {
   }
   return result;
 }
+
+// 序列化参数
+export function serialiseObject (obj) {
+  const prefix = '?'
+  if (obj && Object.keys(obj).length) {
+    return prefix + Object.keys(obj).map(key =>
+      `${key}=${encodeURIComponent(obj[key])}`
+    ).join('&')
+  }
+  return ''
+}
