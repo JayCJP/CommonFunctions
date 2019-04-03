@@ -148,3 +148,27 @@ function getBackSize (name) {
   }
 }
 
+// 计算时间与现在的距离
+function formatLastTime (lt) {
+  const last = Number(lt)
+  if (isNaN(last))
+    return '刚刚'
+
+  const now = new Date().getTime()
+  const date = now - last
+
+  const day = parseInt(date / 1000 / 60 / 60 / 24) // 天
+  const minutes = parseInt(date / 1000 / 60 % 60) // 分钟
+  const houes = parseInt(date / 1000 / 60 / 60 % 24) // 小时
+  if (minutes <= 5) {
+    return '刚刚'
+  } else if (minutes >= 5 && minutes <= 59 && houes < 1) {
+    return `${minutes}分钟前`
+  } else if (houes >= 1 && houes <= 24 && day < 1) {
+    return `${houes}小时前`
+  } else if (day >= 1 && day <= 7) {
+    return `${day}天前`
+  } else {
+    return formatTime(lt)
+  }
+}
