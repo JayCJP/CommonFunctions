@@ -1,10 +1,10 @@
 // 格式化单位数字
-export const formatNumber = n => {
+const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : `0${n}`
 }
 // 格式化时间
-export const formatTime = time => {
+const formatTime = time => {
   const date = new Date(Number(time) * 1000)
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -20,7 +20,7 @@ export const formatTime = time => {
 function numCount(v, n, f) {
   return `${(Number(v) / n).toFixed(2)}${f}`
 }
-export const formatCount = n => {
+const formatCount = n => {
   let v = (n).toString()
   if (v.includes('.')) {
     return v
@@ -37,7 +37,7 @@ export const formatCount = n => {
 }
 
 // 复制功能
-export const copyLink = el => {
+const copyLink = el => {
   let range = document.createRange()
   let selection = window.getSelection()
   range.selectNode(el)
@@ -53,28 +53,28 @@ export const copyLink = el => {
 }
 
 //判断时间是否超时
-export const isOverdue = (time, maxTime = 2) => {
+const isOverdue = (time, maxTime = 2) => {
   const currentTime = new Date().getTime()
   return (currentTime - time)/1000/60/60 < maxTime
 }
 
 // 获取两个数之间的随机数
-export const getRandomInt = (min, max) => {
+const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // 克隆对象
-export const clone = obj => JSON.parse(JSON.stringify(obj));
+const clone = obj => JSON.parse(JSON.stringify(obj));
 
 // 延迟
-export const sleep = t => new Promise(resolve => {
+const sleep = t => new Promise(resolve => {
   setTimeout(resolve, t);
 })
 
 // 计算剩余时间 return 01:24:05
-export const formatTime = t => {
+const formatTime = t => {
   const h = parseInt(Math.floor((t / 1000 / 60 / 60) % 60))
   const m = parseInt(Math.floor((t / 1000 / 60) % 60))
   const s = parseInt(Math.floor((t / 1000) % 60))
@@ -86,7 +86,7 @@ export const formatTime = t => {
  * @param {Number} progress 
  * @description 单行 输出 下载进度▶▶▷▷▷▷ 1~100
  */
-function printProgress(progress) {
+function printProgress (progress) {
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
   // 美化进度
@@ -97,7 +97,7 @@ function printProgress(progress) {
 }
 
 // 秒转为播放时间 value number
-export const formatPlayTime = (value) => {
+const formatPlayTime = (value) => {
 
   let second = parseInt(value); // 秒
   let minute = 0; // 分
@@ -124,7 +124,7 @@ export const formatPlayTime = (value) => {
 }
 
 // 序列化参数
-export function serialiseObject (obj) {
+function serialiseObject (obj) {
   const prefix = '?'
   if (obj && Object.keys(obj).length) {
     return prefix + Object.keys(obj).map(key =>
@@ -133,3 +133,18 @@ export function serialiseObject (obj) {
   }
   return ''
 }
+// name 页面的名字，需要在 page({ name: '' }) 中添加 name 属性
+// return 需要返回的页面栈深度
+function getBackSize (name) {
+  const pages = getCurrentPages()
+  const index = pages.findIndex(el => el.name === name)
+  // 页面栈中没有该页面
+  if (index < 1) {
+    return false
+  } else {
+    const size = pages.length - index - 1
+    // 计算回退量 
+    return size || 1
+  }
+}
+
