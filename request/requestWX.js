@@ -96,6 +96,7 @@ class HTTP {
   }
 }
 
+/* config file */
 import config from './config.js'
 const api = new HTTP(config)
 
