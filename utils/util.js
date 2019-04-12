@@ -172,3 +172,19 @@ function formatLastTime (lt) {
     return formatTime(lt)
   }
 }
+
+function calculateDiffTime(start_time, end_time) {
+  const stime = Date.parse(new Date(start_time));
+  const etime = Date.parse(new Date(end_time));
+  const usedTime = etime - stime;  //两个时间戳相差的毫秒数
+  const days = Math.floor(usedTime / (24 * 3600 * 1000));
+  //计算出小时数
+  const leave1 = usedTime % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+  const hours = Math.floor(leave1 / (3600 * 1000));
+  //计算相差分钟数
+  const leave2 = leave1 % (3600 * 1000);  //计算小时数后剩余的毫秒数
+  const minutes = Math.floor(leave2 / (60 * 1000));
+  const time = days + "天" + hours + "时" + minutes + "分";
+
+  return time;
+}
