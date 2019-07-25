@@ -188,3 +188,25 @@ function calculateDiffTime(start_time, end_time) {
 
   return time;
 }
+
+// 图片的等比缩放
+// maxWidth: 最大宽度， w: 宽度，h: 高度
+function imageScale (maxWidth, w, h) {
+  let scale = 1;
+  if (w > maxWidth || h > maxWidth) {
+    if (w > h) {
+      scale = maxWidth / w;
+    } else {
+      scale = maxWidth / h;
+    }
+  }
+
+  return {
+    width: w * scale,
+    height: h * scale
+  }
+}
+
+
+
+
