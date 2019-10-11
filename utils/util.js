@@ -207,6 +207,9 @@ function imageScale (maxWidth, w, h) {
   }
 }
 
-
+// 判断是否为全屏状态
+function isFullscreen () {
+  return document.fullscreenElement || document.msFullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || false;
+}
 
 
